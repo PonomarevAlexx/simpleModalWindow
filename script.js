@@ -1,6 +1,6 @@
 'use strict';
 
-function modal(trigerSelector, closeSelector, overlaySelector, modalSelector) {
+function modal({trigerSelector, closeSelector, overlaySelector, modalSelector}) {
 
     const btnShowModals = document.querySelectorAll(trigerSelector),
           btnCloseModal = document.querySelector(closeSelector),
@@ -18,18 +18,19 @@ function modal(trigerSelector, closeSelector, overlaySelector, modalSelector) {
     };
 
     btnShowModals.forEach(item => {
-        item.addEventListener('click', () =>{
-            showModal();
-        })
+        item.addEventListener('click',showModal)
     });
 
-    btnCloseModal.addEventListener('click', () => {
-        closeModal();
-    });
+    btnCloseModal.addEventListener('click', closeModal);
 
     document.addEventListener('click', (e) => {
         if(e.target === overlay) closeModal();
     });
 }
 
-modal ('.show-modal-window', '.close-modal-window', '.overlay', '.modal-window')
+modal ({
+    trigerSelector:'.show-modal-window', 
+    overlaySelector: '.overlay',
+    closeSelector: '.close-modal-window',
+    modalSelector: '.modal-window'
+})
