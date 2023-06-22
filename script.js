@@ -23,8 +23,10 @@ function modal({trigerSelector, closeSelector, overlaySelector, modalSelector}) 
 
     btnCloseModal.addEventListener('click', closeModal);
 
-    document.addEventListener('click', (e) => {
-        if(e.target === overlay) closeModal();
+    overlay.addEventListener('click', closeModal)
+
+    document.addEventListener('keydown', (e) => {
+        if(!modal.classList.contains('hidden') && e.key === 'Escape') closeModal();
     });
 }
 
